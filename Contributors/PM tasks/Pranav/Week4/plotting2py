@@ -1,0 +1,23 @@
+import pandas as pd;
+import matplotlib.pyplot as plt;
+
+def plotter(filename,title,output_name):
+    df=pd.read_csv(filename)
+
+    plt.figure()
+    for col in df.columns:
+        if col!="lamda":
+            plt.plot(df["lamda"],df[col],label=col)
+    plt.xscale("log")
+    plt.xlabel("lamda")
+    plt.ylabel("Coefficent value")
+    plt.legend()
+    plt.title(title)
+    plt.savefig(output_name)
+    plt.show()
+
+plotter("output_ridgecoeff.csv","Ridge Coefficient Paths","ridge_paths.png")
+plotter("output_lassocoeff.csv","Lasso Coefficient Paths","lasso_paths.png")
+
+
+
